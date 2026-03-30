@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../theme.dart';
 import '../models/emergency_contact.dart';
 import '../widgets/common_widgets.dart';
-import 'main_monitoring_screen.dart';
+import 'emergency_type.dart'; 
 
 class ContactsScreen extends StatefulWidget {
   const ContactsScreen({super.key});
@@ -123,13 +123,17 @@ class _ContactsScreenState extends State<ContactsScreen> {
     setState(() => _contacts.removeAt(index));
   }
 
-  void _onDone() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (_) => MainMonitoringScreen(contacts: _contacts),
+  // add this import
+
+void _onDone() {
+  Navigator.of(context).pushReplacement(
+    MaterialPageRoute(
+      builder: (_) => EmergencyTypeScreen(
+        contacts: _contacts,
       ),
-    );
-  }
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {

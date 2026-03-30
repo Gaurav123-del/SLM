@@ -23,15 +23,10 @@ class _LoginScreenState extends State<LoginScreen>
   @override
   void initState() {
     super.initState();
-    _animController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
+    _animController = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
     _fadeAnim = CurvedAnimation(parent: _animController, curve: Curves.easeOut);
-    _slideAnim = Tween<Offset>(
-      begin: const Offset(0, 0.15),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _animController, curve: Curves.easeOut));
+    _slideAnim = Tween<Offset>(begin: const Offset(0, 0.15), end: Offset.zero)
+        .animate(CurvedAnimation(parent: _animController, curve: Curves.easeOut));
     _animController.forward();
   }
 
@@ -50,7 +45,6 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   void _onGoogleLogin() {
-    // TODO: integrate google_sign_in package
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => const SetupScreen()),
     );
@@ -61,10 +55,8 @@ class _LoginScreenState extends State<LoginScreen>
       PageRouteBuilder(
         pageBuilder: (_, animation, __) => const SignUpScreen(),
         transitionsBuilder: (_, animation, __, child) => SlideTransition(
-          position: Tween<Offset>(
-            begin: const Offset(1.0, 0.0),
-            end: Offset.zero,
-          ).animate(CurvedAnimation(parent: animation, curve: Curves.easeOutCubic)),
+          position: Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero)
+              .animate(CurvedAnimation(parent: animation, curve: Curves.easeOutCubic)),
           child: child,
         ),
         transitionDuration: const Duration(milliseconds: 350),
@@ -87,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen>
                 children: [
                   const SizedBox(height: 24),
 
-                  // Logo & Title
+                  // ── Logo & Title ──────────────────────────────────────
                   Center(
                     child: Column(
                       children: [
@@ -99,11 +91,7 @@ class _LoginScreenState extends State<LoginScreen>
                             color: AppTheme.surfaceLight,
                             border: Border.all(color: AppTheme.green.withOpacity(0.4), width: 2),
                             boxShadow: [
-                              BoxShadow(
-                                color: AppTheme.green.withOpacity(0.2),
-                                blurRadius: 24,
-                                spreadRadius: 2,
-                              ),
+                              BoxShadow(color: AppTheme.green.withOpacity(0.2), blurRadius: 24, spreadRadius: 2),
                             ],
                           ),
                           child: const Icon(Icons.shield_rounded, color: AppTheme.green, size: 38),
@@ -112,62 +100,33 @@ class _LoginScreenState extends State<LoginScreen>
                         const Text(
                           'Self Live\nMonitoring',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w800,
-                            color: AppTheme.textPrimary,
-                            height: 1.2,
-                            letterSpacing: -0.5,
-                          ),
+                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.w800, color: AppTheme.textPrimary, height: 1.2, letterSpacing: -0.5),
                         ),
                         const SizedBox(height: 8),
-                        const Text(
-                          'Your personal safety guardian',
-                          style: TextStyle(fontSize: 14, color: AppTheme.textSecondary),
-                        ),
+                        const Text('Your personal safety guardian', style: TextStyle(fontSize: 14, color: AppTheme.textSecondary)),
                       ],
                     ),
                   ),
 
                   const SizedBox(height: 40),
 
-                  // Google Login Button
-                  _GoogleSignInButton(onPressed: _onGoogleLogin),
-
-                  const SizedBox(height: 20),
-
-                  // Divider
-                  Row(
-                    children: [
-                      const Expanded(child: Divider(color: AppTheme.borderColor, thickness: 1)),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 14),
-                        child: Text(
-                          'or sign in with email',
-                          style: TextStyle(color: AppTheme.textHint, fontSize: 12),
-                        ),
-                      ),
-                      const Expanded(child: Divider(color: AppTheme.borderColor, thickness: 1)),
-                    ],
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  // Form heading
+                  // ── Form heading ──────────────────────────────────────
                   const Text('Welcome back', style: AppTheme.headingMedium),
                   const SizedBox(height: 6),
                   const Text('Sign in to continue', style: AppTheme.bodyText),
                   const SizedBox(height: 24),
 
+                  // ── Email ─────────────────────────────────────────────
                   AppTextField(
-                    hint: 'Email or phone number',
-                    label: 'Email / Phone',
+                    hint: 'Email',
+                    label: 'Email',
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     prefixIcon: const Icon(Icons.person_outline_rounded, color: AppTheme.textHint, size: 20),
                   ),
                   const SizedBox(height: 14),
 
+                  // ── Password ──────────────────────────────────────────
                   AppTextField(
                     hint: 'Enter your password',
                     label: 'Password',
@@ -177,39 +136,49 @@ class _LoginScreenState extends State<LoginScreen>
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscurePassword ? Icons.visibility_outlined : Icons.visibility_off_outlined,
-                        color: AppTheme.textHint,
-                        size: 20,
+                        color: AppTheme.textHint, size: 20,
                       ),
                       onPressed: () => setState(() => _obscurePassword = !_obscurePassword),
                     ),
                   ),
 
-                  // Forgot password
+                  // ── Forgot password ───────────────────────────────────
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {},
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-                      ),
-                      child: const Text(
-                        'Forgot password?',
-                        style: TextStyle(color: AppTheme.green, fontSize: 13, fontWeight: FontWeight.w500),
-                      ),
+                      style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8)),
+                      child: const Text('Forgot password?', style: TextStyle(color: AppTheme.green, fontSize: 13, fontWeight: FontWeight.w500)),
                     ),
                   ),
 
                   const SizedBox(height: 8),
 
-                  PrimaryButton(
-                    label: 'Login',
-                    onPressed: _onLogin,
-                    icon: Icons.arrow_forward_rounded,
+                  // ── Login button ──────────────────────────────────────
+                  PrimaryButton(label: 'Login', onPressed: _onLogin, icon: Icons.arrow_forward_rounded),
+
+                  const SizedBox(height: 16),
+
+                  // ── OR divider ────────────────────────────────────────
+                  const Row(
+                    children: [
+                      Expanded(child: Divider(color: AppTheme.borderColor, thickness: 1)),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 14),
+                        child: Text('or', style: TextStyle(color: AppTheme.textHint, fontSize: 12)),
+                      ),
+                      Expanded(child: Divider(color: AppTheme.borderColor, thickness: 1)),
+                    ],
                   ),
+
+                  const SizedBox(height: 16),
+
+                  // ── Google button — BELOW Login ───────────────────────
+                  _GoogleSignInButton(onPressed: _onGoogleLogin),
 
                   const SizedBox(height: 24),
 
-                  // Sign Up link
+                  // ── Sign Up link ──────────────────────────────────────
                   Center(
                     child: GestureDetector(
                       onTap: _onSignUp,
@@ -218,14 +187,7 @@ class _LoginScreenState extends State<LoginScreen>
                           text: "Don't have an account? ",
                           style: TextStyle(color: AppTheme.textSecondary, fontSize: 14),
                           children: [
-                            TextSpan(
-                              text: 'Sign Up',
-                              style: TextStyle(
-                                color: AppTheme.green,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14,
-                              ),
-                            ),
+                            TextSpan(text: 'Sign Up', style: TextStyle(color: AppTheme.green, fontWeight: FontWeight.w700, fontSize: 14)),
                           ],
                         ),
                       ),
@@ -264,19 +226,11 @@ class _GoogleSignInButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/icons/google_logo.png',
-              width: 22,
-              height: 22,
-            ),
+            Image.asset('assets/icons/google_logo.png', width: 22, height: 22),
             const SizedBox(width: 12),
             const Text(
               'Continue with Google',
-              style: TextStyle(
-                color: AppTheme.textPrimary,
-                fontWeight: FontWeight.w600,
-                fontSize: 15,
-              ),
+              style: TextStyle(color: AppTheme.textPrimary, fontWeight: FontWeight.w600, fontSize: 15),
             ),
           ],
         ),
