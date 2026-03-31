@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen>
     Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (_, animation, __) => const SignUpScreen(),
-        transitionsBuilder: (_, animation, __, child) => SlideTransition(
+        transitionsBuilder: (_, animation, ___, child) => SlideTransition(
           position: Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero)
               .animate(CurvedAnimation(parent: animation, curve: Curves.easeOutCubic)),
           child: child,
@@ -89,9 +89,9 @@ class _LoginScreenState extends State<LoginScreen>
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: AppTheme.surfaceLight,
-                            border: Border.all(color: AppTheme.green.withOpacity(0.4), width: 2),
+                            border: Border.all(color: AppTheme.green.withValues(alpha: 0.4), width: 2),
                             boxShadow: [
-                              BoxShadow(color: AppTheme.green.withOpacity(0.2), blurRadius: 24, spreadRadius: 2),
+                              BoxShadow(color: AppTheme.green.withValues(alpha: 0.2), blurRadius: 24, spreadRadius: 2),
                             ],
                           ),
                           child: const Icon(Icons.shield_rounded, color: AppTheme.green, size: 38),

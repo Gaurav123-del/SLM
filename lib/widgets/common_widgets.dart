@@ -115,7 +115,7 @@ class VoiceRecordButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
         decoration: BoxDecoration(
           color: isRecorded
-              ? AppTheme.greenDim.withOpacity(0.3)
+              ? AppTheme.greenDim.withValues(alpha: 0.3)
               : AppTheme.surfaceLight,
           borderRadius: BorderRadius.circular(14),
           border: Border.all(
@@ -135,9 +135,9 @@ class VoiceRecordButton extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: isRecorded
-                    ? AppTheme.green.withOpacity(0.15)
+                    ? AppTheme.green.withValues(alpha: 0.15)
                     : isRecording
-                        ? AppTheme.red.withOpacity(0.15)
+                        ? AppTheme.red.withValues(alpha: 0.15)
                         : AppTheme.background,
               ),
               child: Icon(
@@ -155,6 +155,7 @@ class VoiceRecordButton extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  
                   Text(
                     label,
                     style: const TextStyle(

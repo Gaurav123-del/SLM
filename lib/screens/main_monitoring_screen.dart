@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sosapp/services/notification_service.dart';
 // ignore: unused_import
 import 'dart:math' as math;
 import '../theme.dart';
@@ -45,17 +46,28 @@ class _MainMonitoringScreenState extends State<MainMonitoringScreen>
   }
 
   void _toggleMonitoring() {
-    setState(() => _isMonitoring = !_isMonitoring);
-    if (_isMonitoring) {
-      _pulseController.repeat(reverse: true);
-      _waveController.repeat();
-    } else {
-      _pulseController.stop();
-      _pulseController.reset();
-      _waveController.stop();
-      _waveController.reset();
-    }
+  setState(() => _isMonitoring = !_isMonitoring);
+
+  if (_isMonitoring) {
+    _pulseController.repeat(reverse: true);
+    _waveController.repeat();
+
+    // ✅ SHOW NOTIFICATION
+    NotificationService.showNotification(
+      title: "Monitoring Started",
+      body: "Your safety monitoring is active 🚨",
+    );
+
+  } else {
+    _pulseController.stop();
+    _pulseController.reset();
+    _waveController.stop();
+    _waveController.reset();
+
+    // ✅ OPTIONAL: CANCEL NOTIFICATION
+    NotificationService.cancelNotification();
   }
+}
 
   // For demo: trigger emergency
   void _simulateAlert() {
@@ -163,10 +175,10 @@ class _MainMonitoringScreenState extends State<MainMonitoringScreen>
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 14),
                     decoration: BoxDecoration(
-                      color: AppTheme.red.withOpacity(0.1),
+                      color: AppTheme.red.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                          color: AppTheme.red.withOpacity(0.3)),
+                          color: AppTheme.red.withValues(alpha: 0.3)),
                     ),
                     child: const Center(
                       child: Text(
@@ -212,7 +224,7 @@ class _StatusBanner extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 10),
       color: isMonitoring
-          ? AppTheme.green.withOpacity(0.1)
+          ? AppTheme.green.withValues(alpha: 0.1)
           : AppTheme.surfaceLight,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -227,7 +239,7 @@ class _StatusBanner extends StatelessWidget {
               boxShadow: isMonitoring
                   ? [
                       BoxShadow(
-                        color: AppTheme.green.withOpacity(0.6),
+                        color: AppTheme.green.withValues(alpha: 0.6),
                         blurRadius: 6,
                         spreadRadius: 1,
                       )
@@ -317,7 +329,7 @@ class _MonitoringButton extends StatelessWidget {
                 boxShadow: isMonitoring
                     ? [
                         BoxShadow(
-                          color: AppTheme.green.withOpacity(0.35),
+                          color: AppTheme.green.withValues(alpha: 0.35),
                           blurRadius: 40,
                           spreadRadius: 6,
                         )
@@ -358,7 +370,7 @@ class _MonitoringButton extends StatelessWidget {
                     'MONITORING',
                     style: TextStyle(
                       color: isMonitoring
-                          ? AppTheme.background.withOpacity(0.7)
+                          ? AppTheme.background.withValues(alpha: 0.7)
                           : AppTheme.textSecondary,
                       fontWeight: FontWeight.w600,
                       fontSize: 10,
@@ -391,7 +403,7 @@ class _WaveRing extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-          color: color.withOpacity(opacity),
+          color: color.withValues(alpha: opacity),
           width: 2,
         ),
       ),
@@ -542,7 +554,7 @@ class _ContactsSheet extends StatelessWidget {
                       height: 36,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: AppTheme.green.withOpacity(0.1),
+                        color: AppTheme.green.withValues(alpha: 0.1),
                       ),
                       child: Center(
                         child: Text(

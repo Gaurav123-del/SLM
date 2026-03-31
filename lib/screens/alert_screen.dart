@@ -64,10 +64,10 @@ class _AlertScreenState extends State<AlertScreen>
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
-                        color: AppTheme.red.withOpacity(0.15),
+                        color: AppTheme.red.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                            color: AppTheme.red.withOpacity(0.3)),
+                            color: AppTheme.red.withValues(alpha: 0.3)),
                       ),
                       child: const Row(
                         mainAxisSize: MainAxisSize.min,
@@ -99,12 +99,12 @@ class _AlertScreenState extends State<AlertScreen>
                     height: 110,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppTheme.red.withOpacity(0.15),
+                      color: AppTheme.red.withValues(alpha: 0.15),
                       border: Border.all(
-                          color: AppTheme.red.withOpacity(0.5), width: 2),
+                          color: AppTheme.red.withValues(alpha: 0.5), width: 2),
                       boxShadow: [
                         BoxShadow(
-                          color: AppTheme.red.withOpacity(0.3),
+                          color: AppTheme.red.withValues(alpha: 0.3),
                           blurRadius: 32,
                           spreadRadius: 4,
                         ),
@@ -153,7 +153,7 @@ class _AlertScreenState extends State<AlertScreen>
                     color: AppTheme.surface,
                     borderRadius: BorderRadius.circular(18),
                     border: Border.all(
-                        color: AppTheme.red.withOpacity(0.2)),
+                        color: AppTheme.red.withValues(alpha: 0.2)),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,10 +189,10 @@ class _AlertScreenState extends State<AlertScreen>
                   width: double.infinity,
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: AppTheme.greenDim.withOpacity(0.15),
+                    color: AppTheme.greenDim.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(14),
                     border: Border.all(
-                        color: AppTheme.green.withOpacity(0.3)),
+                        color: AppTheme.green.withValues(alpha: 0.3)),
                   ),
                   child: Row(
                     children: [
@@ -201,7 +201,7 @@ class _AlertScreenState extends State<AlertScreen>
                         height: 36,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: AppTheme.green.withOpacity(0.15),
+                          color: AppTheme.green.withValues(alpha: 0.15),
                         ),
                         child: const Icon(Icons.check_rounded,
                             color: AppTheme.green, size: 20),

@@ -21,7 +21,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
 
     showDialog(
       context: context,
-      barrierColor: Colors.black.withOpacity(0.7),
+      barrierColor: Colors.black.withValues(alpha: 0.7),
       builder: (ctx) => Dialog(
         backgroundColor: AppTheme.surface,
         shape: RoundedRectangleBorder(
@@ -39,7 +39,7 @@ class _ContactsScreenState extends State<ContactsScreen> {
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: AppTheme.green.withOpacity(0.1),
+                      color: AppTheme.green.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: const Icon(Icons.person_add_rounded,
@@ -167,12 +167,12 @@ void _onDone() {
                         horizontal: 14, vertical: 8),
                     decoration: BoxDecoration(
                       color: _contacts.length >= _maxContacts
-                          ? AppTheme.green.withOpacity(0.1)
+                          ? AppTheme.green.withValues(alpha: 0.1)
                           : AppTheme.surfaceLight,
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
                         color: _contacts.length >= _maxContacts
-                            ? AppTheme.green.withOpacity(0.4)
+                            ? AppTheme.green.withValues(alpha: 0.4)
                             : AppTheme.borderColor,
                       ),
                     ),
@@ -227,7 +227,7 @@ void _onDone() {
                     ? _buildEmptyState()
                     : ListView.separated(
                         itemCount: _contacts.length,
-                        separatorBuilder: (_, __) =>
+                        separatorBuilder: (_, _) =>
                             const SizedBox(height: 10),
                         itemBuilder: (context, index) {
                           return _ContactCard(
@@ -348,8 +348,8 @@ class _ContactCard extends StatelessWidget {
             height: 44,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: color.withOpacity(0.12),
-              border: Border.all(color: color.withOpacity(0.3)),
+              color: color.withValues(alpha: 0.12),
+              border: Border.all(color: color.withValues(alpha: 0.3)),
             ),
             child: Center(
               child: Text(

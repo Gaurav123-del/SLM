@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sosapp/theme.dart';
 import 'screens/login_screen.dart';
+import 'services/notification_service.dart';
 
-void main() {
+// ✅ MOVE navigatorKey OUTSIDE
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await NotificationService.init(); // ✅ init notifications
 
   // Force dark status bar icons
   SystemChrome.setSystemUIOverlayStyle(
@@ -29,6 +35,7 @@ class SelfLiveMonitoringApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey, // ✅ now works
       title: 'Self Live Monitoring',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,

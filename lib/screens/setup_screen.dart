@@ -109,7 +109,7 @@ class _SetupScreenState extends State<SetupScreen> {
                         Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(
-                            color: AppTheme.green.withOpacity(0.1),
+                            color: AppTheme.green.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: const Icon(
@@ -166,10 +166,10 @@ class _SetupScreenState extends State<SetupScreen> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                 decoration: BoxDecoration(
-                  color: AppTheme.accentBlue.withOpacity(0.08),
+                  color: AppTheme.accentBlue.withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                      color: AppTheme.accentBlue.withOpacity(0.2)),
+                      color: AppTheme.accentBlue.withValues(alpha: 0.2)),
                 ),
                 child: const Row(
                   children: [
@@ -196,10 +196,10 @@ class _SetupScreenState extends State<SetupScreen> {
                 Container(
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(
-                    color: AppTheme.greenDim.withOpacity(0.2),
+                    color: AppTheme.greenDim.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                        color: AppTheme.green.withOpacity(0.3)),
+                        color: AppTheme.green.withValues(alpha: 0.3)),
                   ),
                   child: const Row(
                     children: [
